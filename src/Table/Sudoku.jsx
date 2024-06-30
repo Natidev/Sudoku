@@ -11,7 +11,7 @@ export default function Sudoku(){
             [0,1,2,3,4,5,6,7,8].map(n=><Square 
                 key={n} 
                 index={n}
-                list_of_values={currentT[n]}
+                list_of_values={currentT[n].square}
                 />)
             }
         </div>
