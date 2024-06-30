@@ -4,15 +4,19 @@ import tstore from "../Redux/Tables/TablesStore"
 function Square({index,list_of_values}){
     
     //FIXED make a validation that make sure there are no similar numbers in the same square
-    //TODO make the ui respond for an invalid square
+    //TODO make a better warnning
     const InvalidSquare="border-red-300 border-4"
     let a=0
     const [warning,setWarning]=useState(false)
-    return <div className={`grid grid-cols-3 gap-0 p-0 border shadow-md w-fit ${warning?InvalidSquare:""}`}>
+    return <div 
+    className={`grid grid-cols-3 gap-0 p-0 border shadow-md w-fit ${warning?InvalidSquare:""}`}
+    key={index}
+    >
         {
-            list_of_values.map(n=>{
+            //FIXME use a value from the solved sudoku as identifier since the unsolved values are similar
+            list_of_values.map((n,i)=>{
             return <Element 
-                key={n} 
+                key={i} 
                 val={n} 
                 identifier={{
                     row:index,

@@ -32,4 +32,6 @@ export default function Element({val,identifier,duplicate }) {
         }}
     >{dsply}</div>;
 }
+//TODO implement using the rawsudoku
+//TODO outline green for the properly solved sudoku
 
