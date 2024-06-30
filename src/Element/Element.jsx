@@ -1,6 +1,7 @@
 import { useState } from "react";
 import store from "../Redux/store";
 import tstore from "../Redux/Tables/TablesStore";
+import { squareIsValid } from "../util/validity";
 export default function Element({val,identifier }) {
     const {col,row}=identifier
     const [dsply, setDsply] = useState(val);
@@ -8,7 +9,9 @@ export default function Element({val,identifier }) {
     hover:shadow-md cursor-pointer hover:scale-130"
         onClick={e=>{
             let num=store.getState().currentNumber;
-            num===dsply?setDsply(""):setDsply(num)
+            num===tstore.getState()[row][col]?num="":num;
+            setDsply(num);
+            console.log(identifier);
             tstore.dispatch({
                 type:'CHANGE',
                 payload:{
@@ -17,7 +20,9 @@ export default function Element({val,identifier }) {
                     value:num
                 }
             })
-            console.log(tstore.getState())
+            
+            console.log(squareIsValid(tstore.getState()[row],num,col));
+            //console.log(tstore.getState())
         }}
     >{dsply}</div>;
 }
