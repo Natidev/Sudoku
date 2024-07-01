@@ -1,8 +1,8 @@
 import { useState } from "react";
 import store from "../Redux/store";
 import tstore from "../Redux/Tables/TablesStore";
-import { squareIsValid } from "../util/validity";
-export default function Element({val,identifier,duplicate }) {
+import { completedSquare, squareIsValid } from "../util/validity";
+export default function Element({val,identifier,duplicate,complete }) {
     const {col,row}=identifier
     const [dsply, setDsply] = useState(val);
 
@@ -21,6 +21,7 @@ export default function Element({val,identifier,duplicate }) {
                 }
             })
             let dp=squareIsValid(tstore.getState()[row].square)
+            let cp=completedSquare(tstore.getState()[row].square,row)
             tstore.dispatch({
                 type:'VALIDATE',
                 payload:{
@@ -29,6 +30,7 @@ export default function Element({val,identifier,duplicate }) {
                 }
             })
             duplicate(dp)
+            complete(cp)
         }}
     >{dsply}</div>;
 }

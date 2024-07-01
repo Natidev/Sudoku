@@ -1,6 +1,7 @@
 import { squareIsValid } from '../../util/validity';
 import { produce } from 'immer'
 import getSudoku from './InitialStateGenerator'
+
 export default function TableReducer(initialstate=getSudoku(),action){
 
 switch(action.type){
@@ -36,8 +37,13 @@ switch(action.type){
         return produce(initialstate,(stt)=>{
             stt[action.payload.row].validity=action.payload.value
         })
-
+    case "COMPLETNESS":
+        return produce(initialstate,(stt)=>{
+            stt[action.payload.row].validity=action.payload.value
+        })
+        
     default:
     return initialstate
 }
 }
+//FIXME 

@@ -8,12 +8,13 @@ function Square({index,list_of_values}){
     const InvalidSquare="border-red-300 border-4"
     let a=0
     const [warning,setWarning]=useState(false)
+    const [complete,setComplete]=useState(false)
     return <div 
-    className={`grid grid-cols-3 gap-0 p-0 border shadow-md w-fit ${warning?InvalidSquare:""}`}
+    className={`grid grid-cols-3 gap-0 p-0 border shadow-md w-fit ${warning?InvalidSquare:""} ${complete?"border-blue-600 border-2":""}`}
     key={index}
     >
         {
-            //FIXME use a value from the solved sudoku as identifier since the unsolved values are similar
+            //FIXED use a value from the solved sudoku as identifier since the unsolved values are similar
             list_of_values.map((n,i)=>{
             return <Element 
                 key={i} 
@@ -23,6 +24,7 @@ function Square({index,list_of_values}){
                     col:a++
             }}
                 duplicate={(dp)=>setWarning(!dp)}
+                complete={(c)=>setComplete(c)}
             />
         }
         )
