@@ -6,13 +6,13 @@ const getSudoku=()=>{
     store.dispatch({
         type:'CHANGE_SUDOKU',
         payload:{
-            sudokuIndex:0//index
+            sudokuIndex:index
         }
     })
     const selectedSudoku=allthetables.RawSudoku[0]
     let newStruct=selectedSudoku.map((arry)=>{
         return {
-            square:arry.map((n)=>n===0?"":n),
+            square:arry.map((n)=>n===index?"":n),
             validity:true,
             completed:false
         }

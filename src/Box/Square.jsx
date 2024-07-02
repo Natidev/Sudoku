@@ -5,12 +5,12 @@ function Square({index,list_of_values}){
     
     //FIXED make a validation that make sure there are no similar numbers in the same square
     //TODO make a better warnning
-    const InvalidSquare="border-red-300 border-4"
+    const InvalidSquare="border-red-400 border-2"
     let a=0
     const [warning,setWarning]=useState(false)
     const [complete,setComplete]=useState(false)
     return <div 
-    className={`grid grid-cols-3 gap-0 p-0 border shadow-md w-fit ${warning?InvalidSquare:""} ${complete?"border-blue-600 border-2":""}`}
+    className={`grid grid-cols-3 gap-0 p-0 border shadow-md w-fit ${warning?InvalidSquare:""} ${complete?"border-sky-600 border-2":""}`}
     key={index}
     >
         {
