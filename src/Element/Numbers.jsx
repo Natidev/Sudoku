@@ -22,7 +22,6 @@ export default function Numbers() {
             }
         }}
         onClick={e=>{
-            console.log(n)
             store.dispatch({
                 type:'CHANGE_NUMBER',
                 payload:{

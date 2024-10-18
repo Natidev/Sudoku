@@ -9,10 +9,10 @@ const getSudoku=()=>{
             sudokuIndex:index
         }
     })
-    const selectedSudoku=allthetables.RawSudoku[0]
+    const selectedSudoku=allthetables.RawSudoku[index]
     let newStruct=selectedSudoku.map((arry)=>{
         return {
-            square:arry.map((n)=>n===index?"":n),
+            square:arry.map((n)=>n===0?"":n),
             validity:true,
             completed:false
         }
