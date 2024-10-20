@@ -4,19 +4,20 @@ import tstore from "../Redux/Tables/TablesStore";
 import store from "../Redux/store"
 export default function Sudoku(){
     const currentT=tstore.getState()
-    const hints=store.getState().hintCount
     //TODO row and column validation With reaction
+    store.subscribe(()=>console.log(store.getState()));
+    
     return (<div>
         <button className="bg-yellow-400 m-2 p-2 rounded-md font-mono font-bold text-white "
         onClick={e=>{
             store.dispatch({
-                type:"USE_HINT"
+                type:"CHANGE_HINT",
+                payload:{}
             })
         }}
         >
             hint
         </button>
-        <p>{hints}</p>
         <div className="sudoku grid grid-cols-3 w-fit grid-rows-3
         bg-gradient-to-br from-zinc-400 via-slate-300 to-sky-200">
             {

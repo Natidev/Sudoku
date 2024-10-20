@@ -1,7 +1,7 @@
 export default function Reducer(initialState={
     currentNumber:1,
-    sudokuIndex:-1,
-    hintCount:3
+    hintCount:3,
+    hint:false
 }, action){
 switch(action.type){
     case 'CHANGE_NUMBER':
@@ -9,8 +9,14 @@ switch(action.type){
             currentNumber:action.payload.currentNumber}
     case 'CHANGE_SUDOKU':
         return {...initialState,sudokuIndex:action.payload.sudokuIndex}
-    case 'USE_HINT':
-        return {...initialState,hintCount:hintCount--}
+    case 'CHANGE_HINT':
+        let hintMonitor=initialState.hintCount>0 
+
+        return {
+            ...initialState,
+            hint:hintMonitor,
+            hintCount:initialState.hint?initialState.hintCount-1:initialState.hintCount
+        }
     default:
         return initialState
 }

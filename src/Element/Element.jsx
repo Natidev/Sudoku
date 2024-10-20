@@ -1,16 +1,25 @@
 import { useState } from "react";
 import store from "../Redux/store";
 import tstore from "../Redux/Tables/TablesStore";
+import { hintValue } from "../util/validity";
 import { completedSquare, squareIsValid } from "../util/validity";
 export default function Element({val,identifier,duplicate,complete }) {
     const {col,row}=identifier
     const [dsply, setDsply] = useState(val);
-
     return <div className=" aspect-square w-12 font-semibold p-2 m-0  bg-transparent
     hover:shadow-md cursor-pointer hover:scale-130"
         onClick={e=>{
             let num=store.getState().currentNumber;
+            //if there similar number is filled this will erase it
             num===tstore.getState()[row].square[col]?num="":num;
+            if(store.getState().hint){
+                num=hintValue(row,col)
+                store.dispatch({
+                    type:'UP_HINT',
+                    action:{}
+                }
+                )
+            }
             setDsply(num);
             tstore.dispatch({
                 type:'CHANGE',

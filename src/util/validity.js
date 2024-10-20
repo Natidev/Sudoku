@@ -1,6 +1,5 @@
 import store from "../Redux/store"
 import table from '../Redux/Tables/sudoku.json'
-import tstore from "../Redux/Tables/TablesStore"
 export const completedSquare=(square,index)=>{
     let rawsudoku=square.filter(n=>n!=="")
     if(!squareIsValid(square) || rawsudoku.length!=9)return false
@@ -14,3 +13,4 @@ export const squareIsValid=(square)=>{
     return new Set(rawsudoku).size==rawsudoku.length
 //DONe if there is a similar number in the same square make the borders of the square red 
 }
+export const hintValue = (x, y) => table.SolvedSudoku[store.getState().sudokuIndex][x][y]
