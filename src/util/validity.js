@@ -3,7 +3,6 @@ import table from '../Redux/Tables/sudoku.json'
 export const completedSquare=(square,index)=>{
     let rawsudoku=square.filter(n=>n!=="")
     if(!squareIsValid(square) || rawsudoku.length!=9)return false
-    console.log(rawsudoku)
     const sudokuIndex=store.getState().sudokuIndex
     if(square.some((n,i)=>n!==table.SolvedSudoku[sudokuIndex][index][i]))return false
     return true

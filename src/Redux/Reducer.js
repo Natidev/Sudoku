@@ -10,6 +10,10 @@ switch(action.type){
     case 'CHANGE_SUDOKU':
         return {...initialState,sudokuIndex:action.payload.sudokuIndex}
     case 'CHANGE_HINT':
+        return {
+            ...initialState,
+            hint:initialState.hintCount>0?!initialState.hint:false
+        }
             /*
             i want the hint to be used no less than three times
             i should toggle the hint value
@@ -21,20 +25,28 @@ switch(action.type){
                 f->t
                 *t->f0
             */
-        if(!initialState.hint){
-
+        // if(!initialState.hint)
+        //     return {
+        //         ...initialState,
+        //         hint:true&&initialState.hintCount>0,
+        //         hintCount:initialState.hintCount-1
+        //     }
+        // else
+        //     return {
+        //         ...initialState,
+        //         hint:false
+        //     }
+        
+    case 'USE_HINT':
+        if(initialState.hint)
             return {
                 ...initialState,
-                hint:true&&initialState.hintCount>0,
+                hint:false,
                 hintCount:initialState.hintCount-1
             }
-        }
-        else{
-            return {
-                ...initialState,
-                hint:false
-            }
-        }
+        else
+            return initialState
+
     default:
         return initialState
 }

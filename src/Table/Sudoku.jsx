@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Square from "../Box/Square";
 import Numbers from "../Element/Numbers";
 import tstore from "../Redux/Tables/TablesStore";
@@ -5,10 +6,15 @@ import store from "../Redux/store"
 export default function Sudoku(){
     const currentT=tstore.getState()
     //TODO row and column validation With reaction
-    store.subscribe(()=>console.log(store.getState()));
+    const [rdx,setRdx]=useState(store.getState())
+
+    store.subscribe(()=>
+        setRdx(store.getState())
+
     
+)
     return (<div>
-        <button className="bg-yellow-400 m-2 p-2 rounded-md font-mono font-bold text-white "
+        <button className={`${rdx.hintCount<=0?"bg-gradient-to-l from-gray-600 to-gray-600 ":"bg-gradient-to-l from-blue-600 to-blue-500"} m-2 p-2 rounded-md font-mono ${rdx.hint?" scale-105 bg-gradient-to-l from-yellow-500 to-yellow-400":""} font-bold text-white `}
         onClick={e=>{
             store.dispatch({
                 type:"CHANGE_HINT",
@@ -16,7 +22,7 @@ export default function Sudoku(){
             })
         }}
         >
-            hint
+            hint {rdx.hintCount<=0?"":`X ${rdx.hintCount}`}
         </button>
         <div className="sudoku grid grid-cols-3 w-fit grid-rows-3
         bg-gradient-to-br from-zinc-400 via-slate-300 to-sky-200">
