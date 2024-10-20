@@ -1,7 +1,8 @@
 export default function Reducer(initialState={
     currentNumber:1,
     hintCount:3,
-    hint:false
+    hint:false,
+    sudokuIndex:-1
 }, action){
 switch(action.type){
     case 'CHANGE_NUMBER':
