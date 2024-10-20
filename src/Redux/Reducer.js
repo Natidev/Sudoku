@@ -10,12 +10,30 @@ switch(action.type){
     case 'CHANGE_SUDOKU':
         return {...initialState,sudokuIndex:action.payload.sudokuIndex}
     case 'CHANGE_HINT':
-        let hintMonitor=initialState.hintCount>0 
+            /*
+            i want the hint to be used no less than three times
+            i should toggle the hint value
+            the hint shouldn't be toggled more than 3 times
+                f->t2
+                *t->f
+                f->t
+                *t->f1
+                f->t
+                *t->f0
+            */
+        if(!initialState.hint){
 
-        return {
-            ...initialState,
-            hint:hintMonitor,
-            hintCount:initialState.hint?initialState.hintCount-1:initialState.hintCount
+            return {
+                ...initialState,
+                hint:true&&initialState.hintCount>0,
+                hintCount:initialState.hintCount-1
+            }
+        }
+        else{
+            return {
+                ...initialState,
+                hint:false
+            }
         }
     default:
         return initialState

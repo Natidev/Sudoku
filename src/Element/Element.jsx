@@ -15,7 +15,7 @@ export default function Element({val,identifier,duplicate,complete }) {
             if(store.getState().hint){
                 num=hintValue(row,col)
                 store.dispatch({
-                    type:'UP_HINT',
+                    type:'CHANGE_HINT',
                     action:{}
                 }
                 )
