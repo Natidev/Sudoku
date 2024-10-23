@@ -1,4 +1,4 @@
-# Sudoku React-Spring Template
+# Sudoku
 
 This project is a Sudoku game built using React and Redux. It provides an interactive and engaging way to play Sudoku directly in your browser.
 
